@@ -44,6 +44,7 @@
             this.lblRequestBody = new System.Windows.Forms.Label();
             this.btnRequest = new System.Windows.Forms.Button();
             this.tbResponse = new System.Windows.Forms.TextBox();
+            this.btnLogoff = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbMainURL
@@ -76,7 +77,7 @@
             this.tbUserName.Location = new System.Drawing.Point(122, 286);
             this.tbUserName.Name = "tbUserName";
             this.tbUserName.Size = new System.Drawing.Size(510, 38);
-            this.tbUserName.TabIndex = 3;
+            this.tbUserName.TabIndex = 2;
             // 
             // lblPassword
             // 
@@ -92,7 +93,7 @@
             this.tbPassword.Location = new System.Drawing.Point(122, 367);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(510, 38);
-            this.tbPassword.TabIndex = 5;
+            this.tbPassword.TabIndex = 3;
             // 
             // lblLoginURL
             // 
@@ -108,14 +109,14 @@
             this.tbLoginURL.Location = new System.Drawing.Point(122, 194);
             this.tbLoginURL.Name = "tbLoginURL";
             this.tbLoginURL.Size = new System.Drawing.Size(510, 38);
-            this.tbLoginURL.TabIndex = 7;
+            this.tbLoginURL.TabIndex = 1;
             // 
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(122, 456);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(303, 57);
-            this.btnLogin.TabIndex = 8;
+            this.btnLogin.Size = new System.Drawing.Size(240, 57);
+            this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -128,6 +129,7 @@
             this.tbLoginResponse.ReadOnly = true;
             this.tbLoginResponse.Size = new System.Drawing.Size(510, 443);
             this.tbLoginResponse.TabIndex = 9;
+            this.tbLoginResponse.TabStop = false;
             // 
             // lblEndPointURL
             // 
@@ -143,7 +145,7 @@
             this.tbEndPointURL.Location = new System.Drawing.Point(828, 99);
             this.tbEndPointURL.Name = "tbEndPointURL";
             this.tbEndPointURL.Size = new System.Drawing.Size(464, 38);
-            this.tbEndPointURL.TabIndex = 11;
+            this.tbEndPointURL.TabIndex = 6;
             // 
             // tbRequestBody
             // 
@@ -151,7 +153,7 @@
             this.tbRequestBody.Multiline = true;
             this.tbRequestBody.Name = "tbRequestBody";
             this.tbRequestBody.Size = new System.Drawing.Size(464, 225);
-            this.tbRequestBody.TabIndex = 12;
+            this.tbRequestBody.TabIndex = 7;
             // 
             // lblRequestBody
             // 
@@ -167,7 +169,7 @@
             this.btnRequest.Location = new System.Drawing.Point(828, 456);
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.Size = new System.Drawing.Size(310, 57);
-            this.btnRequest.TabIndex = 14;
+            this.btnRequest.TabIndex = 7;
             this.btnRequest.Text = "SendRequest";
             this.btnRequest.UseVisualStyleBackColor = true;
             this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
@@ -180,10 +182,22 @@
             this.tbResponse.ReadOnly = true;
             this.tbResponse.Size = new System.Drawing.Size(464, 443);
             this.tbResponse.TabIndex = 15;
+            this.tbResponse.TabStop = false;
+            // 
+            // btnLogoff
+            // 
+            this.btnLogoff.Location = new System.Drawing.Point(398, 456);
+            this.btnLogoff.Name = "btnLogoff";
+            this.btnLogoff.Size = new System.Drawing.Size(234, 56);
+            this.btnLogoff.TabIndex = 5;
+            this.btnLogoff.Text = "Logoff";
+            this.btnLogoff.UseVisualStyleBackColor = true;
+            this.btnLogoff.Click += new System.EventHandler(this.btnLogoff_Click);
             // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(1531, 1041);
+            this.Controls.Add(this.btnLogoff);
             this.Controls.Add(this.tbResponse);
             this.Controls.Add(this.btnRequest);
             this.Controls.Add(this.lblRequestBody);
@@ -226,6 +240,7 @@
         private System.Windows.Forms.Label lblRequestBody;
         private System.Windows.Forms.Button btnRequest;
         private System.Windows.Forms.TextBox tbResponse;
+        private System.Windows.Forms.Button btnLogoff;
     }
 }
 

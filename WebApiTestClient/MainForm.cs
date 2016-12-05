@@ -41,7 +41,6 @@ namespace WebApiTestClient
         private void Login()
         {
             var loginUrl = $"{tbMainURL.Text.TrimEnd('/')}/{tbLoginURL.Text.TrimStart('/')}";
-            var client = new HttpClient();
             var lModel = new LoginStadardModel
             {
                 grant_type = "password",
@@ -54,15 +53,43 @@ namespace WebApiTestClient
             dict.Add("login", lModel.userName);
             dict.Add(nameof(lModel.password), lModel.password);
             var content = new FormUrlEncodedContent(dict);
-            var respTask= client.PostAsync(loginUrl, content);
-            respTask.Wait();
-            var response = respTask.Result;
-            var valueTask = response.Content.ReadAsStringAsync();
-            valueTask.Wait();
-            tbLoginResponse.Text = valueTask.Result;
-            if (response.IsSuccessStatusCode)
+            var rslt = SendRequest(loginUrl, content);
+            tbLoginResponse.Text = rslt.Item2;
+            if (rslt.Item1)
             {
-                sessionParams = JsonConvert.DeserializeObject<LoginResponse>(valueTask.Result);
+                sessionParams = JsonConvert.DeserializeObject<LoginResponse>(rslt.Item2);
+            }
+        }
+
+        private Tuple<bool, string> SendRequest(string loginUrl, HttpContent content)
+        {
+            using(var client = new HttpClient())
+            {
+                if (sessionParams != null)
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", sessionParams.access_token);
+                }
+                var respTask = client.PostAsync(loginUrl, content);
+                respTask.Wait();
+                var response = respTask.Result;
+                var valueTask = response.Content.ReadAsStringAsync();
+                valueTask.Wait();
+                return Tuple.Create(response.IsSuccessStatusCode, valueTask.Result);
+            }
+        }
+
+        private void Logoff()
+        {
+            var logoffUrl = $"{tbMainURL.Text.TrimEnd('/')}/logoff";
+            var rslt = SendRequest(logoffUrl, new StringContent(""));
+            if (rslt.Item1)
+            {
+                tbLoginResponse.Text = $"Successfull logoff. {rslt.Item2}";
+                sessionParams = null;
+            }
+            else
+            {
+                tbLoginResponse.Text = $"Logoff error. {rslt.Item2}";
             }
         }
 
@@ -101,6 +128,11 @@ namespace WebApiTestClient
         private void btnRequest_Click(object sender, EventArgs e)
         {
             SendRequest();
+        }
+
+        private void btnLogoff_Click(object sender, EventArgs e)
+        {
+            Logoff();
         }
     }
 }
