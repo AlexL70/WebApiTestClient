@@ -20,12 +20,16 @@
         <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="24" Margin="10,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" TextChanged="LoginCredentialsChanged"/>
         <Button x:Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="10,232,0,0" VerticalAlignment="Top" Width="130" Click="btnLogin_Click"/>
         <Button x:Name="btnLogoff" Content="Log off" HorizontalAlignment="Left" Margin="160,232,0,0" VerticalAlignment="Top" Width="130" Click="btnLogoff_Click"/>
-        <TextBlock x:Name="tbLoginResponse" HorizontalAlignment="Left" Margin="10,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" Height="208"/>
+        <ScrollViewer HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top" Width="280" Height="208">
+            <TextBlock x:Name="tbLoginResponse" TextWrapping="Wrap"/>
+        </ScrollViewer>
         <Label x:Name="lblEndpointURL" Content="Endpoint URL" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="tbEndPointURL" HorizontalAlignment="Left" Height="23" Margin="340,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Label x:Name="label" Content="Request body" HorizontalAlignment="Left" Margin="340,65,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="tbRequestBody" HorizontalAlignment="Left" Height="134" Margin="340,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Button x:Name="btnSendRequest" Content="Send request" HorizontalAlignment="Left" Margin="340,232,0,0" VerticalAlignment="Top" Width="130" Click="btnSendRequest_Click"/>
-        <TextBlock x:Name="tbResponse" HorizontalAlignment="Left" Margin="340,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" Height="208"/>
+        <ScrollViewer  HorizontalAlignment="Left" Margin="340,258,0,0" VerticalAlignment="Top" Width="280" Height="208">
+            <TextBlock x:Name="tbResponse" TextWrapping="Wrap"/>
+        </ScrollViewer>
     </Grid>
 </Window>
