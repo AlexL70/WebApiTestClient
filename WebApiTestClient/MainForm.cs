@@ -17,7 +17,7 @@ namespace WebApiTestClient
         public MainForm()
         {
             InitializeComponent();
-            var currPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            var currPath = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             configPath = Path.Combine(currPath, configName);
             if (File.Exists(configPath))
             {

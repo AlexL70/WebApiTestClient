@@ -8,23 +8,24 @@
         Title="Web Api test client
         " Height="500
         " Width="640
-        ">
-    <Grid>
+        " Closing="Window_Closing">
+    <Grid x:Name="MainGrid">
         <Label x:Name="lblMainUrl" Content="Main URL" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="280"/>
-        <TextBox x:Name="tbMainUrl" HorizontalAlignment="Left" Height="24" Margin="10,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
+        <TextBox x:Name="tbMainURL" HorizontalAlignment="Left" Height="24" Margin="10,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Label x:Name="lblLoginURL" Content="Login URL" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="tbLoginURL" HorizontalAlignment="Left" Height="24" Margin="10,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Label x:Name="lblUserName" Content="User name" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="24" Margin="10,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Label x:Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="24" Margin="10,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
-        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="10,232,0,0" VerticalAlignment="Top" Width="130"/>
-        <Button x:Name="btnLogoff" Content="Button" HorizontalAlignment="Left" Margin="160,232,0,0" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="10,232,0,0" VerticalAlignment="Top" Width="130" Click="btnLogin_Click"/>
+        <Button x:Name="btnLogoff" Content="Log off" HorizontalAlignment="Left" Margin="160,232,0,0" VerticalAlignment="Top" Width="130" Click="btnLogoff_Click"/>
         <TextBlock x:Name="tbLoginResponse" HorizontalAlignment="Left" Margin="10,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" Height="208"/>
         <Label x:Name="lblEndpointURL" Content="Label" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="tbEndPointURL" HorizontalAlignment="Left" Height="23" Margin="340,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Label x:Name="label" Content="Request body" HorizontalAlignment="Left" Margin="340,65,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="tbRequestBody" HorizontalAlignment="Left" Height="134" Margin="340,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
-        <Button x:Name="btnSendRequest" Content="Send request" HorizontalAlignment="Left" Margin="340,232,0,0" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="btnSendRequest" Content="Send request" HorizontalAlignment="Left" Margin="340,232,0,0" VerticalAlignment="Top" Width="130" Click="btnSendRequest_Click"/>
+        <TextBlock x:Name="tbResponse" HorizontalAlignment="Left" Margin="340,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" Height="208"/>
     </Grid>
 </Window>
