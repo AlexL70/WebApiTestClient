@@ -21,7 +21,7 @@ namespace WebApiTestClient
         {
             _baseUrl = baseUrl.TrimEnd('/');
             _loginUrl = loginUrl.TrimStart('/');
-            _logoffUrl = loginUrl.TrimStart('/');
+            _logoffUrl = logoffUrl.TrimStart('/');
             SessionParams = sessionParams;
         }
 
@@ -82,7 +82,7 @@ namespace WebApiTestClient
             return rslt;
         }
 
-        internal Tuple<bool, string> SendRequestWithBody(string url, string body)
+        public Tuple<bool, string> SendRequestWithBody(string url, string body)
         {
             string fullUrl = $"{_baseUrl}/{url.TrimStart('/')}";
             var client = new HttpClient();

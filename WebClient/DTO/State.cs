@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WebApiTestClient.DTO
+﻿namespace WebApiTestClient.DTO
 {
-    class State
+     public class State
     {
         public string MainURL { get; set; }
         public string LoginURL { get; set; }
