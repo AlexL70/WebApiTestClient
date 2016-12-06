@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Windows.Forms;
 using WebApiTestClient.DTO;
 using Newtonsoft.Json;
 using System.IO;
-using System.Text;
-using System.Net.Http.Headers;
 
 namespace WebApiTestClient
 {
     public partial class MainForm : Form
     {
-        private LoginResponse sessionParams;
-        private string configName = "WebApiTestClient.config.json";
+        private WebApiClient _webApiClient;
+        private const string _logoffUrl = "logoff";
+        private const string configName = "WebApiTestClient.config.json";
+        private string configPath;
+        private bool confChanged;
 
         public MainForm()
         {
             InitializeComponent();
             var currPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            configName = Path.Combine(currPath, "WebApiTestClient.config.json");
-            if (File.Exists(configName))
+            configPath = Path.Combine(currPath, configName);
+            if (File.Exists(configPath))
             {
-                string sParams = File.ReadAllText(configName);
+                string sParams = File.ReadAllText(configPath);
                 State state = JsonConvert.DeserializeObject<State>(sParams);
                 tbMainURL.Text = state.MainURL;
                 tbLoginURL.Text = state.LoginURL;
@@ -31,83 +30,32 @@ namespace WebApiTestClient
                 tbEndPointURL.Text = state.EndPointURL;
                 tbRequestBody.Text = state.RequestBody;
             }
+            confChanged = true;
+            InitWebApiClient();
+        }
+
+        private void InitWebApiClient()
+        {
+            LoginResponse currSessionParams = null;
+            if (_webApiClient != null)
+            {
+                _webApiClient = new WebApiClient(tbMainURL.Text, tbLoginURL.Text, _logoffUrl, _webApiClient.SessionParams);
+            }
+            else
+            {
+                _webApiClient = new WebApiClient(tbMainURL.Text, tbLoginURL.Text, _logoffUrl);
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Login();
-        }
-
-        private void Login()
-        {
-            var loginUrl = $"{tbMainURL.Text.TrimEnd('/')}/{tbLoginURL.Text.TrimStart('/')}";
-            var lModel = new LoginStadardModel
+            if (confChanged)
             {
-                grant_type = "password",
-                userName = tbUserName.Text,
-                password = tbPassword.Text
-            };
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            dict.Add(nameof(lModel.grant_type), lModel.grant_type);
-            dict.Add(nameof(lModel.userName), lModel.userName);
-            dict.Add("login", lModel.userName);
-            dict.Add(nameof(lModel.password), lModel.password);
-            var content = new FormUrlEncodedContent(dict);
-            var rslt = SendRequest(loginUrl, content);
-            tbLoginResponse.Text = rslt.Item2;
-            if (rslt.Item1)
-            {
-                sessionParams = JsonConvert.DeserializeObject<LoginResponse>(rslt.Item2);
+                InitWebApiClient();
+                confChanged = false;
             }
-        }
-
-        private Tuple<bool, string> SendRequest(string loginUrl, HttpContent content)
-        {
-            using(var client = new HttpClient())
-            {
-                if (sessionParams != null)
-                {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", sessionParams.access_token);
-                }
-                var respTask = client.PostAsync(loginUrl, content);
-                respTask.Wait();
-                var response = respTask.Result;
-                var valueTask = response.Content.ReadAsStringAsync();
-                valueTask.Wait();
-                return Tuple.Create(response.IsSuccessStatusCode, valueTask.Result);
-            }
-        }
-
-        private void Logoff()
-        {
-            var logoffUrl = $"{tbMainURL.Text.TrimEnd('/')}/logoff";
-            var rslt = SendRequest(logoffUrl, new StringContent(""));
-            if (rslt.Item1)
-            {
-                tbLoginResponse.Text = $"Successfull logoff. {rslt.Item2}";
-                sessionParams = null;
-            }
-            else
-            {
-                tbLoginResponse.Text = $"Logoff error. {rslt.Item2}";
-            }
-        }
-
-        private void SendRequest()
-        {
-            string url = $"{tbMainURL.Text.TrimEnd('/')}/{tbEndPointURL.Text.TrimStart('/')}";
-            var client = new HttpClient();
-            var content = new StringContent(tbRequestBody.Text, Encoding.UTF8, "application/json");
-            if (sessionParams != null)
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", sessionParams.access_token);
-            }
-            var respTask = client.PostAsync(url, content);
-            respTask.Wait();
-            var response = respTask.Result;
-            var valueTask = response.Content.ReadAsStringAsync();
-            valueTask.Wait();
-            tbResponse.Text = valueTask.Result;
+            var res = _webApiClient.Login(tbUserName.Text, tbPassword.Text);
+            tbLoginResponse.Text = res.Item2;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -122,17 +70,24 @@ namespace WebApiTestClient
                 RequestBody = tbRequestBody.Text
             };
             string sParam = JsonConvert.SerializeObject(state);
-            File.WriteAllText(configName, sParam);
+            File.WriteAllText(configPath, sParam);
         }
 
         private void btnRequest_Click(object sender, EventArgs e)
         {
-            SendRequest();
+            var rslt = _webApiClient.SendRequestWithBody(tbEndPointURL.Text, tbRequestBody.Text);
+            tbResponse.Text = rslt.Item2;
         }
 
         private void btnLogoff_Click(object sender, EventArgs e)
         {
-            Logoff();
+            if (confChanged)
+            {
+                InitWebApiClient();
+                confChanged = false;
+            }
+            var res = _webApiClient.Logoff();
+            tbLoginResponse.Text = res.Item2;
         }
     }
 }
