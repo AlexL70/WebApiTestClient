@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTestClientWinForms", "WebApiTestClient\WebApiTestClientWinForms.csproj", "{5EA86730-D082-453F-B843-563429DF7CBA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{7F824A6D-D578-42C3-9075-18C4B5DA2C59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTestClientWPF", "WebApiTestClientWPF\WebApiTestClientWPF.csproj", "{121BCC0A-D5D0-43DA-A4E8-5B26811BD870}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTestClient", "WebApiTestClient\WebApiTestClient.csproj", "{121BCC0A-D5D0-43DA-A4E8-5B26811BD870}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5EA86730-D082-453F-B843-563429DF7CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EA86730-D082-453F-B843-563429DF7CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EA86730-D082-453F-B843-563429DF7CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EA86730-D082-453F-B843-563429DF7CBA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F824A6D-D578-42C3-9075-18C4B5DA2C59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F824A6D-D578-42C3-9075-18C4B5DA2C59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F824A6D-D578-42C3-9075-18C4B5DA2C59}.Release|Any CPU.ActiveCfg = Release|Any CPU

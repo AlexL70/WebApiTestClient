@@ -1,7 +1,7 @@
-﻿<Application x:Class="WebApiTestClientWPF.App"
+﻿<Application x:Class="WebApiTestClient.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WebApiTestClientWPF"
+             xmlns:local="clr-namespace:WebApiTestClient"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

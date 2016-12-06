@@ -4,7 +4,7 @@ using WebApiTestClient;
 using Newtonsoft.Json;
 using WebApiTestClient.DTO;
 
-namespace WebApiTestClientWPF
+namespace WebApiTestClient
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -90,6 +90,11 @@ namespace WebApiTestClientWPF
         {
             var rslt = _webApiClient.SendRequestWithBody(tbEndPointURL.Text, tbRequestBody.Text);
             tbResponse.Text = rslt.Item2;
+        }
+
+        private void LoginCredentialsChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            confChanged = true;
         }
     }
 }
