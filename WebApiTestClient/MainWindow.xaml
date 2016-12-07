@@ -24,9 +24,9 @@
             <TextBlock x:Name="tbLoginResponse" TextWrapping="Wrap"/>
         </ScrollViewer>
         <Label x:Name="lblEndpointURL" Content="Endpoint URL" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Width="280"/>
-        <TextBox x:Name="tbEndPointURL" HorizontalAlignment="Left" Height="23" Margin="340,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
+        <TextBox x:Name="tbEndPointURL" HorizontalAlignment="Left" Height="23" Margin="340,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" />
         <Label x:Name="label" Content="Request body" HorizontalAlignment="Left" Margin="340,65,0,0" VerticalAlignment="Top" Width="280"/>
-        <TextBox x:Name="tbRequestBody" HorizontalAlignment="Left" Height="134" Margin="340,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
+        <TextBox x:Name="tbRequestBody" HorizontalAlignment="Left" Height="134" Margin="340,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" AcceptsReturn="True"/>
         <Button x:Name="btnSendRequest" Content="Send request" HorizontalAlignment="Left" Margin="340,232,0,0" VerticalAlignment="Top" Width="130" Click="btnSendRequest_Click"/>
         <ScrollViewer  HorizontalAlignment="Left" Margin="340,258,0,0" VerticalAlignment="Top" Width="280" Height="208">
             <TextBlock x:Name="tbResponse" TextWrapping="Wrap"/>
