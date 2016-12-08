@@ -19,9 +19,9 @@ namespace WebApiTestClient
 
         public WebApiClient(string baseUrl, string loginUrl, string logoffUrl, LoginResponse sessionParams)
         {
-            _baseUrl = baseUrl.TrimEnd('/');
-            _loginUrl = loginUrl.TrimStart('/');
-            _logoffUrl = logoffUrl.TrimStart('/');
+            _baseUrl = baseUrl.Trim(' ').TrimEnd('/');
+            _loginUrl = loginUrl.Trim(' ').TrimStart('/');
+            _logoffUrl = logoffUrl.Trim(' ').TrimStart('/');
             SessionParams = sessionParams;
         }
 
@@ -84,7 +84,7 @@ namespace WebApiTestClient
 
         public Tuple<bool, string> SendRequestWithBody(string url, string body)
         {
-            string fullUrl = $"{_baseUrl}/{url.TrimStart('/')}";
+            string fullUrl = $"{_baseUrl}/{url.Trim(' ').TrimStart('/')}";
             var client = new HttpClient();
             var content = new StringContent(body, Encoding.UTF8, "application/json");
             if (SessionParams != null)
