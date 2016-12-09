@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using WebApiTestClient.DTO;
 
 namespace WebApiTestClient
@@ -87,12 +88,19 @@ namespace WebApiTestClient
             string fullUrl = $"{_baseUrl}/{url.Trim(' ').TrimStart('/')}";
             var client = new HttpClient();
             var content = new StringContent(body, Encoding.UTF8, "application/json");
-            if (SessionParams != null)
+            if (SessionParams?.access_token != null)
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", SessionParams.access_token);
             }
             var respTask = client.PostAsync(fullUrl, content);
-            respTask.Wait();
+            try
+            {
+                respTask.Wait();
+            }
+            catch (Exception e)
+            {
+                return Tuple.Create(false, e.ToString());
+            }
             var response = respTask.Result;
             var valueTask = response.Content.ReadAsStringAsync();
             valueTask.Wait();

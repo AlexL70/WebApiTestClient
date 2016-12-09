@@ -22,6 +22,7 @@
         <Button x:Name="btnLogoff" Content="Log off" HorizontalAlignment="Left" Margin="160,232,0,0" VerticalAlignment="Top" Width="130" Click="btnLogoff_Click"/>
         <TextBox Name="tbLoginResponse" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top" Width="280" Height="208"
              Background="Transparent"
+             VerticalScrollBarVisibility="Auto"
              BorderThickness="0"
              Text="{Binding Text, Mode=OneWay}"
              IsReadOnly="True"
@@ -33,6 +34,7 @@
         <Button x:Name="btnSendRequest" Content="Send request" HorizontalAlignment="Left" Margin="340,232,0,0" VerticalAlignment="Top" Width="130" Click="btnSendRequest_Click"/>
         <TextBox Name="tbResponse" HorizontalAlignment="Left" Margin="340,258,0,0" VerticalAlignment="Top" Width="280" Height="208"
              Background="Transparent"
+             VerticalScrollBarVisibility="Auto"
              BorderThickness="0"
              Text="{Binding Text, Mode=OneWay}"
              IsReadOnly="True"
