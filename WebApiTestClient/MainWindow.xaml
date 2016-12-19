@@ -18,9 +18,9 @@
         <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="24" Margin="10,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" TextChanged="LoginCredentialsChanged"/>
         <Label x:Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="24" Margin="10,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" TextChanged="LoginCredentialsChanged"/>
-        <Button x:Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="10,232,0,0" VerticalAlignment="Top" Width="130" Click="btnLogin_Click"/>
-        <Button x:Name="btnLogoff" Content="Log off" HorizontalAlignment="Left" Margin="160,232,0,0" VerticalAlignment="Top" Width="130" Click="btnLogoff_Click"/>
-        <TextBox Name="tbLoginResponse" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top" Width="280" Height="208"
+        <Button x:Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top" Width="130" Click="btnLogin_Click"/>
+        <Button x:Name="btnLogoff" Content="Log off" HorizontalAlignment="Left" Margin="160,266,0,0" VerticalAlignment="Top" Width="130" Click="btnLogoff_Click"/>
+        <TextBox Name="tbLoginResponse" HorizontalAlignment="Left" Margin="10,292,0,0" VerticalAlignment="Top" Width="280" Height="174"
              Background="Transparent"
              VerticalScrollBarVisibility="Auto"
              BorderThickness="0"
@@ -29,10 +29,21 @@
              TextWrapping="Wrap" />
         <Label x:Name="lblEndpointURL" Content="Endpoint URL" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="tbEndPointURL" HorizontalAlignment="Left" Height="23" Margin="340,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" />
-        <Label x:Name="label" Content="Request body" HorizontalAlignment="Left" Margin="340,65,0,0" VerticalAlignment="Top" Width="280"/>
-        <TextBox x:Name="tbRequestBody" HorizontalAlignment="Left" Height="134" Margin="340,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" AcceptsReturn="True"/>
-        <Button x:Name="btnSendRequest" Content="Send request" HorizontalAlignment="Left" Margin="340,232,0,0" VerticalAlignment="Top" Width="130" Click="btnSendRequest_Click"/>
-        <TextBox Name="tbResponse" HorizontalAlignment="Left" Margin="340,258,0,0" VerticalAlignment="Top" Width="280" Height="208"
+        <Label x:Name="lblVerb" Content="Verb" HorizontalAlignment="Left" Margin="340,65,0,0" VerticalAlignment="Top" Width="95"/>
+        <ComboBox x:Name="cbVerb" HorizontalAlignment="Left" Margin="440,69,0,0" VerticalAlignment="Top" Width="180" SelectedIndex="0">
+            <ComboBoxItem Content="OPTIONS"/>
+            <ComboBoxItem Content="GET"/>
+            <ComboBoxItem Content="HEAD"/>
+            <ComboBoxItem Content="POST"/>
+            <ComboBoxItem Content="PUT"/>
+            <ComboBoxItem Content="DELETE"/>
+            <ComboBoxItem Content="TRACE"/>
+            <ComboBoxItem Content="CONNECT"/>
+        </ComboBox>
+        <Label x:Name="lblContent" Content="Request body" HorizontalAlignment="Left" Margin="340,95,0,0" VerticalAlignment="Top" Width="280"/>
+        <TextBox x:Name="tbRequestBody" HorizontalAlignment="Left" Height="138" Margin="340,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" AcceptsReturn="True"/>
+        <Button x:Name="btnSendRequest" Content="Send request" HorizontalAlignment="Left" Margin="340,266,0,0" VerticalAlignment="Top" Width="130" Click="btnSendRequest_Click"/>
+        <TextBox Name="tbResponse" HorizontalAlignment="Left" Margin="340,292,0,0" VerticalAlignment="Top" Width="280" Height="174"
              Background="Transparent"
              VerticalScrollBarVisibility="Auto"
              BorderThickness="0"

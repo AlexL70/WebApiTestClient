@@ -31,6 +31,7 @@ namespace WebApiTestClient
                 tbUserName.Text = state.UserName;
                 tbPassword.Text = state.Password;
                 tbEndPointURL.Text = state.EndPointURL;
+                cbVerb.SelectedIndex = state.SelectedVerb;
                 tbRequestBody.Text = state.RequestBody;
             }
             confChanged = true;
@@ -58,6 +59,7 @@ namespace WebApiTestClient
                 UserName = tbUserName.Text,
                 Password = tbPassword.Text,
                 EndPointURL = tbEndPointURL.Text,
+                SelectedVerb = cbVerb.SelectedIndex,
                 RequestBody = tbRequestBody.Text
             };
             string sParam = JsonConvert.SerializeObject(state);
@@ -88,8 +90,17 @@ namespace WebApiTestClient
 
         private void btnSendRequest_Click(object sender, RoutedEventArgs e)
         {
-            var rslt = _webApiClient.SendRequestWithBody(tbEndPointURL.Text, tbRequestBody.Text);
-            tbResponse.Text = rslt.Item2;
+            var rslt = _webApiClient.SendRequestWithBody(tbEndPointURL.Text, cbVerb.Text, tbRequestBody.Text);
+            string resStr = "";
+            if (rslt.Item1)
+            {
+                resStr = "OK";
+            }
+            else
+            {
+                resStr = "Error";
+            }
+            tbResponse.Text = $"{resStr}\n--------------------\n{rslt.Item2}";
         }
 
         private void LoginCredentialsChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

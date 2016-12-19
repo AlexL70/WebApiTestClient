@@ -83,7 +83,7 @@ namespace WebApiTestClient
             return rslt;
         }
 
-        public Tuple<bool, string> SendRequestWithBody(string url, string body)
+        public Tuple<bool, string> SendRequestWithBody(string url, string verb, string body)
         {
             string fullUrl = $"{_baseUrl}/{url.Trim(' ').TrimStart('/')}";
             var client = new HttpClient();
@@ -92,9 +92,21 @@ namespace WebApiTestClient
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", SessionParams.access_token);
             }
-            var respTask = client.PostAsync(fullUrl, content);
+            Task<HttpResponseMessage> respTask;
             try
             {
+                if (verb == "POST")
+                {
+                    respTask = client.PostAsync(fullUrl, content);
+                }
+                else if (verb == "DELETE")
+                {
+                    respTask = client.DeleteAsync(fullUrl);
+                }
+                else
+                {
+                    throw new NotImplementedException($"{verb} has not been implemented yet.");
+                }
                 respTask.Wait();
             }
             catch (Exception e)
